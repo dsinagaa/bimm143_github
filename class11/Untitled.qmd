@@ -1,0 +1,37 @@
+---
+title: "Class 11: AlphaFold"
+author: "Dea Sinaga (PID: A17725676)"
+format: html
+toc: true
+---
+
+```{r}
+library(bio3d)
+
+pdb <- read.pdb("hivpr_dimer_23119/hivpr_dimer_23119_unrelaxed_rank_005_alphafold2_multimer_v3_model_3_seed_000.pdb")
+
+pdb
+```
+
+Make a vector of input PDB file names that we can read into R
+
+```{r}
+pdbfiles <- list.files("hivpr_dimer_23119/", pattern = ".pdb", full.names = TRUE)
+```
+
+```{r}
+pdbs
+```
+
+```{r}
+library(bio3d)
+
+pdbs <- pdbaln(pdbfiles, fit = TRUE)
+```
+
+
+```{r}
+rd <- rmsd(pdbs, fit = TRUE)
+range(rd)
+```
+

@@ -1,0 +1,51 @@
+---
+title: 'Class 12: Population Scale Analysis'
+author: 'Dea Sinaga (PID: A17725676)'
+date: "2026-05-11"
+output: pdf_document
+---
+
+One sample is obviously not enough to know what is happening in a population. You are
+interested in assessing genetic differences on a population scale.
+
+> **Q13.** Read this file into R and determine the sample size for each genotype and their corresponding median expression levels for each of these genotypes.
+
+How many samples do we have?
+
+```{r}
+expr <- read.table("https://bioboot.github.io/bimm143_S26/class-material/rs8067378_ENSG00000172057.6.txt")
+
+head(expr)
+```
+
+```{r}
+nrow(expr)
+```
+
+The sample size for each genotype is shown below.
+```{r}
+table(expr$geno)
+```
+
+```{r}
+summary(expr)
+```
+
+The median expression levels for each genotypes are shown below.
+```{r}
+tapply(expr$exp, expr$geno, median)
+```
+
+
+> **Q14.** Generate a boxplot with a box per genotype, what could you infer from the relative expression value between A/A and G/G displayed in this plot? Does the SNP effect the expression of ORMDL3?
+
+```{r}
+library(ggplot2)
+```
+
+```{r}
+ggplot(expr) + aes(geno, exp, fill=geno) +
+  geom_boxplot(notch=TRUE)
+```
+
+The boxplot shows that the expression levels of ORMDL3 in G/G individuals are lower than that of A/A individuals. Thus, the SNP affects the expression of ORMDL3, more specifically by decreasing it.

@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dea Sinaga (PID: A17725676)">
+
+<title>Class 9: Candy Mini-Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="lab09_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lab09_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="lab09_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="lab09_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="lab09_files/libs/quarto-html/popper.min.js"></script>
+<script src="lab09_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="lab09_files/libs/quarto-html/anchor.min.js"></script>
+<link href="lab09_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lab09_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="lab09_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="lab09_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="lab09_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
+  <li><a href="#importing-candy-data" id="toc-importing-candy-data" class="nav-link" data-scroll-target="#importing-candy-data">Importing candy data</a></li>
+  <li><a href="#exploratory-analysis" id="toc-exploratory-analysis" class="nav-link" data-scroll-target="#exploratory-analysis">Exploratory analysis</a></li>
+  <li><a href="#overall-candy-rankings" id="toc-overall-candy-rankings" class="nav-link" data-scroll-target="#overall-candy-rankings">Overall Candy Rankings</a></li>
+  <li><a href="#taking-a-look-at-pricepercent" id="toc-taking-a-look-at-pricepercent" class="nav-link" data-scroll-target="#taking-a-look-at-pricepercent">Taking a look at pricepercent</a></li>
+  <li><a href="#exploring-the-correlation-structure" id="toc-exploring-the-correlation-structure" class="nav-link" data-scroll-target="#exploring-the-correlation-structure">Exploring the correlation structure</a></li>
+  <li><a href="#principal-component-analysis" id="toc-principal-component-analysis" class="nav-link" data-scroll-target="#principal-component-analysis">Principal Component Analysis</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 9: Candy Mini-Project</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dea Sinaga (PID: A17725676) </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>Today we are taking a detour to analyze a fun dataset (that we have more intrinsic insight into) with the most useful analysis method we have learned thus far - Principal Component Analysis (PCA).</p>
+</section>
+<section id="importing-candy-data" class="level2">
+<h2 class="anchored" data-anchor-id="importing-candy-data">Importing candy data</h2>
+<p>The data is all realted to Halloween candy and is from the 538 website.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>candy <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"candy-data.txt"</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(candy)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             chocolate fruity caramel peanutyalmondy nougat crispedricewafer
+100 Grand            1      0       1              0      0                1
+3 Musketeers         1      0       0              0      1                0
+One dime             0      0       0              0      0                0
+One quarter          0      0       0              0      0                0
+Air Heads            0      1       0              0      0                0
+Almond Joy           1      0       0              1      0                0
+             hard bar pluribus sugarpercent pricepercent winpercent
+100 Grand       0   1        0        0.732        0.860   66.97173
+3 Musketeers    0   1        0        0.604        0.511   67.60294
+One dime        0   0        0        0.011        0.116   32.26109
+One quarter     0   0        0        0.011        0.511   46.11650
+Air Heads       0   0        0        0.906        0.511   52.34146
+Almond Joy      0   1        0        0.465        0.767   50.34755</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Q1.</strong> How many different candy types are in this dataset?</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(candy)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 85</code></pre>
+</div>
+</div>
+<p>85 different candy types are in the dataset.</p>
+<blockquote class="blockquote">
+<p><strong>Q2.</strong> How many fruity candy types are in the dataset?</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(candy<span class="sc">$</span>fruity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 38</code></pre>
+</div>
+</div>
+<p>There are 38 fruity candy types.</p>
+<blockquote class="blockquote">
+<p><strong>Q3.</strong> What is your favorite candy (other than Twix) in the dataset and what is it’s winpercent value?</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>candy <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">row.names</span>(candy)<span class="sc">==</span><span class="st">"Milky Way"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(winpercent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          winpercent
+Milky Way   73.09956</code></pre>
+</div>
+</div>
+<p>The winpercent value of “Milky Way” is 73.09956.</p>
+<blockquote class="blockquote">
+<p><strong>Q4.</strong> What is the winpercent value for “Kit Kat”?</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>candy <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">row.names</span>(candy)<span class="sc">==</span><span class="st">"Kit Kat"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(winpercent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        winpercent
+Kit Kat    76.7686</code></pre>
+</div>
+</div>
+<p>The winpercent value is 76.7686.</p>
+<blockquote class="blockquote">
+<p><strong>Q5.</strong> What is the winpercent value for “Tootsie Roll Snack Bars”?</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>candy <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">row.names</span>(candy)<span class="sc">==</span><span class="st">"Tootsie Roll Snack Bars"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(winpercent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                        winpercent
+Tootsie Roll Snack Bars    49.6535</code></pre>
+</div>
+</div>
+<p>The winpercent value is 49.6535.</p>
+<p>There is a useful ‘skim()’ function in the <strong>skimr</strong> package that can help give you a quick overview of a given dataset. Let’s install this package and try it on our candy data.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(candy)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">candy</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">85</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 11%">
+<col style="width: 15%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">chocolate</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.44</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▆</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fruity</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.45</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▆</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">caramel</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.37</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▂</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">peanutyalmondy</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.37</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">nougat</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">crispedricewafer</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hard</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▂</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bar</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.43</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pluribus</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.52</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▇</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sugarpercent</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.73</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: left;">▇▇▇▇▆</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pricepercent</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.29</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: left;">▇▇▇▇▆</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">winpercent</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">50.32</td>
+<td style="text-align: right;">14.71</td>
+<td style="text-align: right;">22.45</td>
+<td style="text-align: right;">39.14</td>
+<td style="text-align: right;">47.83</td>
+<td style="text-align: right;">59.86</td>
+<td style="text-align: right;">84.18</td>
+<td style="text-align: left;">▃▇▆▅▂</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Q6.</strong> Is there any variable/column that looks to be on a different scale to the majority of the other columns in the dataset?</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Q7.</strong> What do you think a zero and one represent for the candy$chocolate column?</p>
+</blockquote>
+</section>
+<section id="exploratory-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-analysis">Exploratory analysis</h2>
+<blockquote class="blockquote">
+<p><strong>Q8.</strong> Plot a histogram of winpercent values using both base R and ggplot2.</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(candy<span class="sc">$</span>winpercent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab09_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(candy) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(winpercent) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab09_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Q9.</strong> Is the distribution of winpercent values symmetrical?</p>
+</blockquote>
+<p>No</p>
+<blockquote class="blockquote">
+<p><strong>Q10.</strong> Is the center of the distribution above or below 50%?</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(candy<span class="sc">$</span>winpercent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  22.45   39.14   47.83   50.32   59.86   84.18 </code></pre>
+</div>
+</div>
+<p>Below 50%</p>
+<blockquote class="blockquote">
+<p><strong>Q11.</strong> On average is chocolate candy higher or lower ranked than fruit candy?</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>choc.ind <span class="ot">&lt;-</span> <span class="fu">as.logical</span>(candy<span class="sc">$</span>chocolate)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>choc.candy <span class="ot">&lt;-</span> candy[choc.ind, ]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>choc.win <span class="ot">&lt;-</span> choc.candy<span class="sc">$</span>winpercent</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(choc.win)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 60.92153</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fruity.ind <span class="ot">&lt;-</span> <span class="fu">as.logical</span>(candy<span class="sc">$</span>fruity)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>fruity.candy <span class="ot">&lt;-</span> candy[fruity.ind, ]</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>fruity.win <span class="ot">&lt;-</span> fruity.candy<span class="sc">$</span>winpercent</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(fruity.win)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 44.11974</code></pre>
+</div>
+</div>
+<p>Chocolate candy is ranked higher on average than fruity candy.</p>
+<blockquote class="blockquote">
+<p><strong>Q12.</strong> Is this difference statistically significant?</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(choc.win, fruity.win)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  choc.win and fruity.win
+t = 6.2582, df = 68.882, p-value = 2.871e-08
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 11.44563 22.15795
+sample estimates:
+mean of x mean of y 
+ 60.92153  44.11974 </code></pre>
+</div>
+</div>
+<p>Yes, this difference is statistically significant.</p>
+</section>
+<section id="overall-candy-rankings" class="level2">
+<h2 class="anchored" data-anchor-id="overall-candy-rankings">Overall Candy Rankings</h2>
+<blockquote class="blockquote">
+<p><strong>Q13.</strong> What are the five least liked candy types in this set?</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">1</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  1  5 10</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">order</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3 1 2</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>candy[<span class="fu">order</span>(candy<span class="sc">$</span>winpercent), ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            chocolate fruity caramel peanutyalmondy nougat
+Nik L Nip                           0      1       0              0      0
+Boston Baked Beans                  0      0       0              1      0
+Chiclets                            0      1       0              0      0
+Super Bubble                        0      1       0              0      0
+Jawbusters                          0      1       0              0      0
+Root Beer Barrels                   0      0       0              0      0
+Sugar Daddy                         0      0       1              0      0
+One dime                            0      0       0              0      0
+Sugar Babies                        0      0       1              0      0
+Haribo Happy Cola                   0      0       0              0      0
+Caramel Apple Pops                  0      1       1              0      0
+Strawberry bon bons                 0      1       0              0      0
+Sixlets                             1      0       0              0      0
+Ring pop                            0      1       0              0      0
+Chewey Lemonhead Fruit Mix          0      1       0              0      0
+Red vines                           0      1       0              0      0
+Pixie Sticks                        0      0       0              0      0
+Nestle Smarties                     1      0       0              0      0
+Candy Corn                          0      0       0              0      0
+Charleston Chew                     1      0       0              0      1
+Warheads                            0      1       0              0      0
+Lemonhead                           0      1       0              0      0
+Fun Dip                             0      1       0              0      0
+Now &amp; Later                         0      1       0              0      0
+Dum Dums                            0      1       0              0      0
+Pop Rocks                           0      1       0              0      0
+Laffy Taffy                         0      1       0              0      0
+Werther's Original Caramel          0      0       1              0      0
+Haribo Twin Snakes                  0      1       0              0      0
+Dots                                0      1       0              0      0
+Runts                               0      1       0              0      0
+Tootsie Roll Juniors                1      0       0              0      0
+Fruit Chews                         0      1       0              0      0
+Welch's Fruit Snacks                0      1       0              0      0
+Twizzlers                           0      1       0              0      0
+Tootsie Roll Midgies                1      0       0              0      0
+Smarties candy                      0      1       0              0      0
+One quarter                         0      0       0              0      0
+Payday                              0      0       0              1      1
+Mike &amp; Ike                          0      1       0              0      0
+Gobstopper                          0      1       0              0      0
+Trolli Sour Bites                   0      1       0              0      0
+Mounds                              1      0       0              0      0
+Tootsie Pop                         1      1       0              0      0
+Whoppers                            1      0       0              0      0
+Tootsie Roll Snack Bars             1      0       0              0      0
+Almond Joy                          1      0       0              1      0
+Haribo Sour Bears                   0      1       0              0      0
+Air Heads                           0      1       0              0      0
+Sour Patch Tricksters               0      1       0              0      0
+Lifesavers big ring gummies         0      1       0              0      0
+Mr Good Bar                         1      0       0              1      0
+Swedish Fish                        0      1       0              0      0
+Milk Duds                           1      0       1              0      0
+Skittles wildberry                  0      1       0              0      0
+Nerds                               0      1       0              0      0
+Hershey's Kisses                    1      0       0              0      0
+Hershey's Milk Chocolate            1      0       0              0      0
+Baby Ruth                           1      0       1              1      1
+Haribo Gold Bears                   0      1       0              0      0
+Junior Mints                        1      0       0              0      0
+Hershey's Special Dark              1      0       0              0      0
+Snickers Crisper                    1      0       1              1      0
+Sour Patch Kids                     0      1       0              0      0
+Milky Way Midnight                  1      0       1              0      1
+Hershey's Krackel                   1      0       0              0      0
+Skittles original                   0      1       0              0      0
+Milky Way Simply Caramel            1      0       1              0      0
+Rolo                                1      0       1              0      0
+Nestle Crunch                       1      0       0              0      0
+M&amp;M's                               1      0       0              0      0
+100 Grand                           1      0       1              0      0
+Starburst                           0      1       0              0      0
+3 Musketeers                        1      0       0              0      1
+Peanut M&amp;Ms                         1      0       0              1      0
+Nestle Butterfinger                 1      0       0              1      0
+Peanut butter M&amp;M's                 1      0       0              1      0
+Reese's stuffed with pieces         1      0       0              1      0
+Milky Way                           1      0       1              0      1
+Reese's pieces                      1      0       0              1      0
+Snickers                            1      0       1              1      1
+Kit Kat                             1      0       0              0      0
+Twix                                1      0       1              0      0
+Reese's Miniatures                  1      0       0              1      0
+Reese's Peanut Butter cup           1      0       0              1      0
+                            crispedricewafer hard bar pluribus sugarpercent
+Nik L Nip                                  0    0   0        1        0.197
+Boston Baked Beans                         0    0   0        1        0.313
+Chiclets                                   0    0   0        1        0.046
+Super Bubble                               0    0   0        0        0.162
+Jawbusters                                 0    1   0        1        0.093
+Root Beer Barrels                          0    1   0        1        0.732
+Sugar Daddy                                0    0   0        0        0.418
+One dime                                   0    0   0        0        0.011
+Sugar Babies                               0    0   0        1        0.965
+Haribo Happy Cola                          0    0   0        1        0.465
+Caramel Apple Pops                         0    0   0        0        0.604
+Strawberry bon bons                        0    1   0        1        0.569
+Sixlets                                    0    0   0        1        0.220
+Ring pop                                   0    1   0        0        0.732
+Chewey Lemonhead Fruit Mix                 0    0   0        1        0.732
+Red vines                                  0    0   0        1        0.581
+Pixie Sticks                               0    0   0        1        0.093
+Nestle Smarties                            0    0   0        1        0.267
+Candy Corn                                 0    0   0        1        0.906
+Charleston Chew                            0    0   1        0        0.604
+Warheads                                   0    1   0        0        0.093
+Lemonhead                                  0    1   0        0        0.046
+Fun Dip                                    0    1   0        0        0.732
+Now &amp; Later                                0    0   0        1        0.220
+Dum Dums                                   0    1   0        0        0.732
+Pop Rocks                                  0    1   0        1        0.604
+Laffy Taffy                                0    0   0        0        0.220
+Werther's Original Caramel                 0    1   0        0        0.186
+Haribo Twin Snakes                         0    0   0        1        0.465
+Dots                                       0    0   0        1        0.732
+Runts                                      0    1   0        1        0.872
+Tootsie Roll Juniors                       0    0   0        0        0.313
+Fruit Chews                                0    0   0        1        0.127
+Welch's Fruit Snacks                       0    0   0        1        0.313
+Twizzlers                                  0    0   0        0        0.220
+Tootsie Roll Midgies                       0    0   0        1        0.174
+Smarties candy                             0    1   0        1        0.267
+One quarter                                0    0   0        0        0.011
+Payday                                     0    0   1        0        0.465
+Mike &amp; Ike                                 0    0   0        1        0.872
+Gobstopper                                 0    1   0        1        0.906
+Trolli Sour Bites                          0    0   0        1        0.313
+Mounds                                     0    0   1        0        0.313
+Tootsie Pop                                0    1   0        0        0.604
+Whoppers                                   1    0   0        1        0.872
+Tootsie Roll Snack Bars                    0    0   1        0        0.465
+Almond Joy                                 0    0   1        0        0.465
+Haribo Sour Bears                          0    0   0        1        0.465
+Air Heads                                  0    0   0        0        0.906
+Sour Patch Tricksters                      0    0   0        1        0.069
+Lifesavers big ring gummies                0    0   0        0        0.267
+Mr Good Bar                                0    0   1        0        0.313
+Swedish Fish                               0    0   0        1        0.604
+Milk Duds                                  0    0   0        1        0.302
+Skittles wildberry                         0    0   0        1        0.941
+Nerds                                      0    1   0        1        0.848
+Hershey's Kisses                           0    0   0        1        0.127
+Hershey's Milk Chocolate                   0    0   1        0        0.430
+Baby Ruth                                  0    0   1        0        0.604
+Haribo Gold Bears                          0    0   0        1        0.465
+Junior Mints                               0    0   0        1        0.197
+Hershey's Special Dark                     0    0   1        0        0.430
+Snickers Crisper                           1    0   1        0        0.604
+Sour Patch Kids                            0    0   0        1        0.069
+Milky Way Midnight                         0    0   1        0        0.732
+Hershey's Krackel                          1    0   1        0        0.430
+Skittles original                          0    0   0        1        0.941
+Milky Way Simply Caramel                   0    0   1        0        0.965
+Rolo                                       0    0   0        1        0.860
+Nestle Crunch                              1    0   1        0        0.313
+M&amp;M's                                      0    0   0        1        0.825
+100 Grand                                  1    0   1        0        0.732
+Starburst                                  0    0   0        1        0.151
+3 Musketeers                               0    0   1        0        0.604
+Peanut M&amp;Ms                                0    0   0        1        0.593
+Nestle Butterfinger                        0    0   1        0        0.604
+Peanut butter M&amp;M's                        0    0   0        1        0.825
+Reese's stuffed with pieces                0    0   0        0        0.988
+Milky Way                                  0    0   1        0        0.604
+Reese's pieces                             0    0   0        1        0.406
+Snickers                                   0    0   1        0        0.546
+Kit Kat                                    1    0   1        0        0.313
+Twix                                       1    0   1        0        0.546
+Reese's Miniatures                         0    0   0        0        0.034
+Reese's Peanut Butter cup                  0    0   0        0        0.720
+                            pricepercent winpercent
+Nik L Nip                          0.976   22.44534
+Boston Baked Beans                 0.511   23.41782
+Chiclets                           0.325   24.52499
+Super Bubble                       0.116   27.30386
+Jawbusters                         0.511   28.12744
+Root Beer Barrels                  0.069   29.70369
+Sugar Daddy                        0.325   32.23100
+One dime                           0.116   32.26109
+Sugar Babies                       0.767   33.43755
+Haribo Happy Cola                  0.465   34.15896
+Caramel Apple Pops                 0.325   34.51768
+Strawberry bon bons                0.058   34.57899
+Sixlets                            0.081   34.72200
+Ring pop                           0.965   35.29076
+Chewey Lemonhead Fruit Mix         0.511   36.01763
+Red vines                          0.116   37.34852
+Pixie Sticks                       0.023   37.72234
+Nestle Smarties                    0.976   37.88719
+Candy Corn                         0.325   38.01096
+Charleston Chew                    0.511   38.97504
+Warheads                           0.116   39.01190
+Lemonhead                          0.104   39.14106
+Fun Dip                            0.325   39.18550
+Now &amp; Later                        0.325   39.44680
+Dum Dums                           0.034   39.46056
+Pop Rocks                          0.837   41.26551
+Laffy Taffy                        0.116   41.38956
+Werther's Original Caramel         0.267   41.90431
+Haribo Twin Snakes                 0.465   42.17877
+Dots                               0.511   42.27208
+Runts                              0.279   42.84914
+Tootsie Roll Juniors               0.511   43.06890
+Fruit Chews                        0.034   43.08892
+Welch's Fruit Snacks               0.313   44.37552
+Twizzlers                          0.116   45.46628
+Tootsie Roll Midgies               0.011   45.73675
+Smarties candy                     0.116   45.99583
+One quarter                        0.511   46.11650
+Payday                             0.767   46.29660
+Mike &amp; Ike                         0.325   46.41172
+Gobstopper                         0.453   46.78335
+Trolli Sour Bites                  0.255   47.17323
+Mounds                             0.860   47.82975
+Tootsie Pop                        0.325   48.98265
+Whoppers                           0.848   49.52411
+Tootsie Roll Snack Bars            0.325   49.65350
+Almond Joy                         0.767   50.34755
+Haribo Sour Bears                  0.465   51.41243
+Air Heads                          0.511   52.34146
+Sour Patch Tricksters              0.116   52.82595
+Lifesavers big ring gummies        0.279   52.91139
+Mr Good Bar                        0.918   54.52645
+Swedish Fish                       0.755   54.86111
+Milk Duds                          0.511   55.06407
+Skittles wildberry                 0.220   55.10370
+Nerds                              0.325   55.35405
+Hershey's Kisses                   0.093   55.37545
+Hershey's Milk Chocolate           0.918   56.49050
+Baby Ruth                          0.767   56.91455
+Haribo Gold Bears                  0.465   57.11974
+Junior Mints                       0.511   57.21925
+Hershey's Special Dark             0.918   59.23612
+Snickers Crisper                   0.651   59.52925
+Sour Patch Kids                    0.116   59.86400
+Milky Way Midnight                 0.441   60.80070
+Hershey's Krackel                  0.918   62.28448
+Skittles original                  0.220   63.08514
+Milky Way Simply Caramel           0.860   64.35334
+Rolo                               0.860   65.71629
+Nestle Crunch                      0.767   66.47068
+M&amp;M's                              0.651   66.57458
+100 Grand                          0.860   66.97173
+Starburst                          0.220   67.03763
+3 Musketeers                       0.511   67.60294
+Peanut M&amp;Ms                        0.651   69.48379
+Nestle Butterfinger                0.767   70.73564
+Peanut butter M&amp;M's                0.651   71.46505
+Reese's stuffed with pieces        0.651   72.88790
+Milky Way                          0.651   73.09956
+Reese's pieces                     0.651   73.43499
+Snickers                           0.651   76.67378
+Kit Kat                            0.511   76.76860
+Twix                               0.906   81.64291
+Reese's Miniatures                 0.279   81.86626
+Reese's Peanut Butter cup          0.651   84.18029</code></pre>
+</div>
+</div>
+<p>Nik L Nip, Boston Baked Beans, Chiclets, Super Bubble, and Jawbuster.</p>
+<blockquote class="blockquote">
+<p><strong>Q14.</strong> What are the top 5 all time favorite candy types out of this set?</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>candy[<span class="fu">order</span>(candy<span class="sc">$</span>winpercent, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            chocolate fruity caramel peanutyalmondy nougat
+Reese's Peanut Butter cup           1      0       0              1      0
+Reese's Miniatures                  1      0       0              1      0
+Twix                                1      0       1              0      0
+Kit Kat                             1      0       0              0      0
+Snickers                            1      0       1              1      1
+Reese's pieces                      1      0       0              1      0
+Milky Way                           1      0       1              0      1
+Reese's stuffed with pieces         1      0       0              1      0
+Peanut butter M&amp;M's                 1      0       0              1      0
+Nestle Butterfinger                 1      0       0              1      0
+Peanut M&amp;Ms                         1      0       0              1      0
+3 Musketeers                        1      0       0              0      1
+Starburst                           0      1       0              0      0
+100 Grand                           1      0       1              0      0
+M&amp;M's                               1      0       0              0      0
+Nestle Crunch                       1      0       0              0      0
+Rolo                                1      0       1              0      0
+Milky Way Simply Caramel            1      0       1              0      0
+Skittles original                   0      1       0              0      0
+Hershey's Krackel                   1      0       0              0      0
+Milky Way Midnight                  1      0       1              0      1
+Sour Patch Kids                     0      1       0              0      0
+Snickers Crisper                    1      0       1              1      0
+Hershey's Special Dark              1      0       0              0      0
+Junior Mints                        1      0       0              0      0
+Haribo Gold Bears                   0      1       0              0      0
+Baby Ruth                           1      0       1              1      1
+Hershey's Milk Chocolate            1      0       0              0      0
+Hershey's Kisses                    1      0       0              0      0
+Nerds                               0      1       0              0      0
+Skittles wildberry                  0      1       0              0      0
+Milk Duds                           1      0       1              0      0
+Swedish Fish                        0      1       0              0      0
+Mr Good Bar                         1      0       0              1      0
+Lifesavers big ring gummies         0      1       0              0      0
+Sour Patch Tricksters               0      1       0              0      0
+Air Heads                           0      1       0              0      0
+Haribo Sour Bears                   0      1       0              0      0
+Almond Joy                          1      0       0              1      0
+Tootsie Roll Snack Bars             1      0       0              0      0
+Whoppers                            1      0       0              0      0
+Tootsie Pop                         1      1       0              0      0
+Mounds                              1      0       0              0      0
+Trolli Sour Bites                   0      1       0              0      0
+Gobstopper                          0      1       0              0      0
+Mike &amp; Ike                          0      1       0              0      0
+Payday                              0      0       0              1      1
+One quarter                         0      0       0              0      0
+Smarties candy                      0      1       0              0      0
+Tootsie Roll Midgies                1      0       0              0      0
+Twizzlers                           0      1       0              0      0
+Welch's Fruit Snacks                0      1       0              0      0
+Fruit Chews                         0      1       0              0      0
+Tootsie Roll Juniors                1      0       0              0      0
+Runts                               0      1       0              0      0
+Dots                                0      1       0              0      0
+Haribo Twin Snakes                  0      1       0              0      0
+Werther's Original Caramel          0      0       1              0      0
+Laffy Taffy                         0      1       0              0      0
+Pop Rocks                           0      1       0              0      0
+Dum Dums                            0      1       0              0      0
+Now &amp; Later                         0      1       0              0      0
+Fun Dip                             0      1       0              0      0
+Lemonhead                           0      1       0              0      0
+Warheads                            0      1       0              0      0
+Charleston Chew                     1      0       0              0      1
+Candy Corn                          0      0       0              0      0
+Nestle Smarties                     1      0       0              0      0
+Pixie Sticks                        0      0       0              0      0
+Red vines                           0      1       0              0      0
+Chewey Lemonhead Fruit Mix          0      1       0              0      0
+Ring pop                            0      1       0              0      0
+Sixlets                             1      0       0              0      0
+Strawberry bon bons                 0      1       0              0      0
+Caramel Apple Pops                  0      1       1              0      0
+Haribo Happy Cola                   0      0       0              0      0
+Sugar Babies                        0      0       1              0      0
+One dime                            0      0       0              0      0
+Sugar Daddy                         0      0       1              0      0
+Root Beer Barrels                   0      0       0              0      0
+Jawbusters                          0      1       0              0      0
+Super Bubble                        0      1       0              0      0
+Chiclets                            0      1       0              0      0
+Boston Baked Beans                  0      0       0              1      0
+Nik L Nip                           0      1       0              0      0
+                            crispedricewafer hard bar pluribus sugarpercent
+Reese's Peanut Butter cup                  0    0   0        0        0.720
+Reese's Miniatures                         0    0   0        0        0.034
+Twix                                       1    0   1        0        0.546
+Kit Kat                                    1    0   1        0        0.313
+Snickers                                   0    0   1        0        0.546
+Reese's pieces                             0    0   0        1        0.406
+Milky Way                                  0    0   1        0        0.604
+Reese's stuffed with pieces                0    0   0        0        0.988
+Peanut butter M&amp;M's                        0    0   0        1        0.825
+Nestle Butterfinger                        0    0   1        0        0.604
+Peanut M&amp;Ms                                0    0   0        1        0.593
+3 Musketeers                               0    0   1        0        0.604
+Starburst                                  0    0   0        1        0.151
+100 Grand                                  1    0   1        0        0.732
+M&amp;M's                                      0    0   0        1        0.825
+Nestle Crunch                              1    0   1        0        0.313
+Rolo                                       0    0   0        1        0.860
+Milky Way Simply Caramel                   0    0   1        0        0.965
+Skittles original                          0    0   0        1        0.941
+Hershey's Krackel                          1    0   1        0        0.430
+Milky Way Midnight                         0    0   1        0        0.732
+Sour Patch Kids                            0    0   0        1        0.069
+Snickers Crisper                           1    0   1        0        0.604
+Hershey's Special Dark                     0    0   1        0        0.430
+Junior Mints                               0    0   0        1        0.197
+Haribo Gold Bears                          0    0   0        1        0.465
+Baby Ruth                                  0    0   1        0        0.604
+Hershey's Milk Chocolate                   0    0   1        0        0.430
+Hershey's Kisses                           0    0   0        1        0.127
+Nerds                                      0    1   0        1        0.848
+Skittles wildberry                         0    0   0        1        0.941
+Milk Duds                                  0    0   0        1        0.302
+Swedish Fish                               0    0   0        1        0.604
+Mr Good Bar                                0    0   1        0        0.313
+Lifesavers big ring gummies                0    0   0        0        0.267
+Sour Patch Tricksters                      0    0   0        1        0.069
+Air Heads                                  0    0   0        0        0.906
+Haribo Sour Bears                          0    0   0        1        0.465
+Almond Joy                                 0    0   1        0        0.465
+Tootsie Roll Snack Bars                    0    0   1        0        0.465
+Whoppers                                   1    0   0        1        0.872
+Tootsie Pop                                0    1   0        0        0.604
+Mounds                                     0    0   1        0        0.313
+Trolli Sour Bites                          0    0   0        1        0.313
+Gobstopper                                 0    1   0        1        0.906
+Mike &amp; Ike                                 0    0   0        1        0.872
+Payday                                     0    0   1        0        0.465
+One quarter                                0    0   0        0        0.011
+Smarties candy                             0    1   0        1        0.267
+Tootsie Roll Midgies                       0    0   0        1        0.174
+Twizzlers                                  0    0   0        0        0.220
+Welch's Fruit Snacks                       0    0   0        1        0.313
+Fruit Chews                                0    0   0        1        0.127
+Tootsie Roll Juniors                       0    0   0        0        0.313
+Runts                                      0    1   0        1        0.872
+Dots                                       0    0   0        1        0.732
+Haribo Twin Snakes                         0    0   0        1        0.465
+Werther's Original Caramel                 0    1   0        0        0.186
+Laffy Taffy                                0    0   0        0        0.220
+Pop Rocks                                  0    1   0        1        0.604
+Dum Dums                                   0    1   0        0        0.732
+Now &amp; Later                                0    0   0        1        0.220
+Fun Dip                                    0    1   0        0        0.732
+Lemonhead                                  0    1   0        0        0.046
+Warheads                                   0    1   0        0        0.093
+Charleston Chew                            0    0   1        0        0.604
+Candy Corn                                 0    0   0        1        0.906
+Nestle Smarties                            0    0   0        1        0.267
+Pixie Sticks                               0    0   0        1        0.093
+Red vines                                  0    0   0        1        0.581
+Chewey Lemonhead Fruit Mix                 0    0   0        1        0.732
+Ring pop                                   0    1   0        0        0.732
+Sixlets                                    0    0   0        1        0.220
+Strawberry bon bons                        0    1   0        1        0.569
+Caramel Apple Pops                         0    0   0        0        0.604
+Haribo Happy Cola                          0    0   0        1        0.465
+Sugar Babies                               0    0   0        1        0.965
+One dime                                   0    0   0        0        0.011
+Sugar Daddy                                0    0   0        0        0.418
+Root Beer Barrels                          0    1   0        1        0.732
+Jawbusters                                 0    1   0        1        0.093
+Super Bubble                               0    0   0        0        0.162
+Chiclets                                   0    0   0        1        0.046
+Boston Baked Beans                         0    0   0        1        0.313
+Nik L Nip                                  0    0   0        1        0.197
+                            pricepercent winpercent
+Reese's Peanut Butter cup          0.651   84.18029
+Reese's Miniatures                 0.279   81.86626
+Twix                               0.906   81.64291
+Kit Kat                            0.511   76.76860
+Snickers                           0.651   76.67378
+Reese's pieces                     0.651   73.43499
+Milky Way                          0.651   73.09956
+Reese's stuffed with pieces        0.651   72.88790
+Peanut butter M&amp;M's                0.651   71.46505
+Nestle Butterfinger                0.767   70.73564
+Peanut M&amp;Ms                        0.651   69.48379
+3 Musketeers                       0.511   67.60294
+Starburst                          0.220   67.03763
+100 Grand                          0.860   66.97173
+M&amp;M's                              0.651   66.57458
+Nestle Crunch                      0.767   66.47068
+Rolo                               0.860   65.71629
+Milky Way Simply Caramel           0.860   64.35334
+Skittles original                  0.220   63.08514
+Hershey's Krackel                  0.918   62.28448
+Milky Way Midnight                 0.441   60.80070
+Sour Patch Kids                    0.116   59.86400
+Snickers Crisper                   0.651   59.52925
+Hershey's Special Dark             0.918   59.23612
+Junior Mints                       0.511   57.21925
+Haribo Gold Bears                  0.465   57.11974
+Baby Ruth                          0.767   56.91455
+Hershey's Milk Chocolate           0.918   56.49050
+Hershey's Kisses                   0.093   55.37545
+Nerds                              0.325   55.35405
+Skittles wildberry                 0.220   55.10370
+Milk Duds                          0.511   55.06407
+Swedish Fish                       0.755   54.86111
+Mr Good Bar                        0.918   54.52645
+Lifesavers big ring gummies        0.279   52.91139
+Sour Patch Tricksters              0.116   52.82595
+Air Heads                          0.511   52.34146
+Haribo Sour Bears                  0.465   51.41243
+Almond Joy                         0.767   50.34755
+Tootsie Roll Snack Bars            0.325   49.65350
+Whoppers                           0.848   49.52411
+Tootsie Pop                        0.325   48.98265
+Mounds                             0.860   47.82975
+Trolli Sour Bites                  0.255   47.17323
+Gobstopper                         0.453   46.78335
+Mike &amp; Ike                         0.325   46.41172
+Payday                             0.767   46.29660
+One quarter                        0.511   46.11650
+Smarties candy                     0.116   45.99583
+Tootsie Roll Midgies               0.011   45.73675
+Twizzlers                          0.116   45.46628
+Welch's Fruit Snacks               0.313   44.37552
+Fruit Chews                        0.034   43.08892
+Tootsie Roll Juniors               0.511   43.06890
+Runts                              0.279   42.84914
+Dots                               0.511   42.27208
+Haribo Twin Snakes                 0.465   42.17877
+Werther's Original Caramel         0.267   41.90431
+Laffy Taffy                        0.116   41.38956
+Pop Rocks                          0.837   41.26551
+Dum Dums                           0.034   39.46056
+Now &amp; Later                        0.325   39.44680
+Fun Dip                            0.325   39.18550
+Lemonhead                          0.104   39.14106
+Warheads                           0.116   39.01190
+Charleston Chew                    0.511   38.97504
+Candy Corn                         0.325   38.01096
+Nestle Smarties                    0.976   37.88719
+Pixie Sticks                       0.023   37.72234
+Red vines                          0.116   37.34852
+Chewey Lemonhead Fruit Mix         0.511   36.01763
+Ring pop                           0.965   35.29076
+Sixlets                            0.081   34.72200
+Strawberry bon bons                0.058   34.57899
+Caramel Apple Pops                 0.325   34.51768
+Haribo Happy Cola                  0.465   34.15896
+Sugar Babies                       0.767   33.43755
+One dime                           0.116   32.26109
+Sugar Daddy                        0.325   32.23100
+Root Beer Barrels                  0.069   29.70369
+Jawbusters                         0.511   28.12744
+Super Bubble                       0.116   27.30386
+Chiclets                           0.325   24.52499
+Boston Baked Beans                 0.511   23.41782
+Nik L Nip                          0.976   22.44534</code></pre>
+</div>
+</div>
+<p>Reese’s Peanut Butter Cup, Reese’s Miniatures, Twix, Kit Kat, and Snickers.</p>
+<blockquote class="blockquote">
+<p><strong>Q15.</strong> Make a first barplot of candy ranking based on winpercent values.</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(candy) <span class="sc">+</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(winpercent, <span class="fu">rownames</span>(candy)) <span class="sc">+</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab09_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Q16.</strong> This is quite ugly, use the reorder() function to get the bars sorted by winpercent?</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(candy) <span class="sc">+</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(winpercent, <span class="fu">reorder</span>(<span class="fu">rownames</span>(candy), winpercent)) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab09_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Q17.</strong> What is the worst ranked chocolate candy?</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>mycols <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"gray"</span>, <span class="fu">nrow</span>(candy)) </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="do">## chocolate candy in chocolate color</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>mycols[<span class="fu">as.logical</span>(candy<span class="sc">$</span>chocolate)] <span class="ot">&lt;-</span> <span class="st">"chocolate"</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="do">## candy bars in brown</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>mycols[<span class="fu">as.logical</span>(candy<span class="sc">$</span>bar)] <span class="ot">&lt;-</span> <span class="st">"brown"</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="do">## fruity candy in pink</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>mycols[<span class="fu">as.logical</span>(candy<span class="sc">$</span>fruity)] <span class="ot">&lt;-</span> <span class="st">"pink"</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(candy) <span class="sc">+</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(winpercent,</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">reorder</span>(<span class="fu">rownames</span>(candy), winpercent)) <span class="sc">+</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_col</span>(<span class="at">fill=</span>mycols)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab09_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Sixlets is the worst ranked chocolate candy.</p>
+<blockquote class="blockquote">
+<p><strong>Q18.</strong> What is the best ranked fruity candy?</p>
+</blockquote>
+<p>Starburst is the best ranked fruity candy.</p>
+</section>
+<section id="taking-a-look-at-pricepercent" class="level2">
+<h2 class="anchored" data-anchor-id="taking-a-look-at-pricepercent">Taking a look at pricepercent</h2>
+<p>Make a plot of winprcent vs pricepercent</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(candy) <span class="sc">+</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(winpercent, </span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>      pricepercent, </span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">label=</span><span class="fu">rownames</span>(candy)) <span class="sc">+</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col=</span>mycols) <span class="sc">+</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">col=</span>mycols, <span class="at">max.overlaps=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab09_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Q19.</strong> Which candy type is the highest ranked in terms of winpercent for the least money - i.e.&nbsp;offers the most bang for your buck?</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Q20.</strong> What are the top 5 most expensive candy types in the dataset and of these which is the least popular?</p>
+</blockquote>
+</section>
+<section id="exploring-the-correlation-structure" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-the-correlation-structure">Exploring the correlation structure</h2>
+<p>We can calculate the pair-wise correlation of all our columns.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>cij <span class="ot">&lt;-</span> <span class="fu">cor</span>(candy)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>cij</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  chocolate      fruity     caramel peanutyalmondy      nougat
+chocolate         1.0000000 -0.74172106  0.24987535     0.37782357  0.25489183
+fruity           -0.7417211  1.00000000 -0.33548538    -0.39928014 -0.26936712
+caramel           0.2498753 -0.33548538  1.00000000     0.05935614  0.32849280
+peanutyalmondy    0.3778236 -0.39928014  0.05935614     1.00000000  0.21311310
+nougat            0.2548918 -0.26936712  0.32849280     0.21311310  1.00000000
+crispedricewafer  0.3412098 -0.26936712  0.21311310    -0.01764631 -0.08974359
+hard             -0.3441769  0.39067750 -0.12235513    -0.20555661 -0.13867505
+bar               0.5974211 -0.51506558  0.33396002     0.26041960  0.52297636
+pluribus         -0.3396752  0.29972522 -0.26958501    -0.20610932 -0.31033884
+sugarpercent      0.1041691 -0.03439296  0.22193335     0.08788927  0.12308135
+pricepercent      0.5046754 -0.43096853  0.25432709     0.30915323  0.15319643
+winpercent        0.6365167 -0.38093814  0.21341630     0.40619220  0.19937530
+                 crispedricewafer        hard         bar    pluribus
+chocolate              0.34120978 -0.34417691  0.59742114 -0.33967519
+fruity                -0.26936712  0.39067750 -0.51506558  0.29972522
+caramel                0.21311310 -0.12235513  0.33396002 -0.26958501
+peanutyalmondy        -0.01764631 -0.20555661  0.26041960 -0.20610932
+nougat                -0.08974359 -0.13867505  0.52297636 -0.31033884
+crispedricewafer       1.00000000 -0.13867505  0.42375093 -0.22469338
+hard                  -0.13867505  1.00000000 -0.26516504  0.01453172
+bar                    0.42375093 -0.26516504  1.00000000 -0.59340892
+pluribus              -0.22469338  0.01453172 -0.59340892  1.00000000
+sugarpercent           0.06994969  0.09180975  0.09998516  0.04552282
+pricepercent           0.32826539 -0.24436534  0.51840654 -0.22079363
+winpercent             0.32467965 -0.31038158  0.42992933 -0.24744787
+                 sugarpercent pricepercent winpercent
+chocolate          0.10416906    0.5046754  0.6365167
+fruity            -0.03439296   -0.4309685 -0.3809381
+caramel            0.22193335    0.2543271  0.2134163
+peanutyalmondy     0.08788927    0.3091532  0.4061922
+nougat             0.12308135    0.1531964  0.1993753
+crispedricewafer   0.06994969    0.3282654  0.3246797
+hard               0.09180975   -0.2443653 -0.3103816
+bar                0.09998516    0.5184065  0.4299293
+pluribus           0.04552282   -0.2207936 -0.2474479
+sugarpercent       1.00000000    0.3297064  0.2291507
+pricepercent       0.32970639    1.0000000  0.3453254
+winpercent         0.22915066    0.3453254  1.0000000</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>corrplot 0.95 loaded</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(cij)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab09_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Q22.</strong> Examining this plot what two variables are anti-correlated (i.e.&nbsp;have minus values)?</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Q23.</strong> Use your corrplot result to make a prediction: which variables do you expect will have the largest contributions (i.e.&nbsp;loadings) to PC1 (i.e., drive the most separation between candies along the first principal component)?</p>
+</blockquote>
+</section>
+<section id="principal-component-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="principal-component-analysis">Principal Component Analysis</h2>
+<p>In this case, we want to be sure to set ‘scale=TRUE’ argument for ‘prcomp()’ because we have one variable ‘winpercent’ that is on a very different scale than all others and would otherwise dominate our PCA results.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(candy, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Importance of components:
+                          PC1    PC2    PC3     PC4    PC5     PC6     PC7
+Standard deviation     2.0788 1.1378 1.1092 1.07533 0.9518 0.81923 0.81530
+Proportion of Variance 0.3601 0.1079 0.1025 0.09636 0.0755 0.05593 0.05539
+Cumulative Proportion  0.3601 0.4680 0.5705 0.66688 0.7424 0.79830 0.85369
+                           PC8     PC9    PC10    PC11    PC12
+Standard deviation     0.74530 0.67824 0.62349 0.43974 0.39760
+Proportion of Variance 0.04629 0.03833 0.03239 0.01611 0.01317
+Cumulative Proportion  0.89998 0.93832 0.97071 0.98683 1.00000</code></pre>
+</div>
+</div>
+<p>First major result figure is the “score plot” of PC1 and PC2 – how different candy are related to each other on our new PC axis:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pca<span class="sc">$</span>x) <span class="sc">+</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(PC1, PC2, <span class="at">label=</span><span class="fu">row.names</span>(pca<span class="sc">$</span>x)) <span class="sc">+</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col=</span>mycols) <span class="sc">+</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">size=</span><span class="fl">3.3</span>, <span class="at">col=</span>mycols, <span class="at">max.overlaps=</span><span class="dv">7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab09_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
