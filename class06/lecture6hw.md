@@ -1,0 +1,146 @@
+# Lecture 6 HW
+Dea Sinaga (PID: A17725676)
+
+- [Code](#code)
+- [Documentation](#documentation)
+- [Acknowledgement](#acknowledgement)
+
+Original code:
+
+``` r
+library(bio3d)
+s1 <- read.pdb("4AKE") # kinase with drug
+```
+
+      Note: Accessing on-line PDB file
+
+``` r
+s2 <- read.pdb("1AKE") # kinase no drug
+```
+
+      Note: Accessing on-line PDB file
+       PDB has ALT records, taking A only, rm.alt=TRUE
+
+``` r
+s3 <- read.pdb("1E4Y") # kinase with drug
+```
+
+      Note: Accessing on-line PDB file
+
+``` r
+s1.chainA <- trim.pdb(s1, chain="A", elety="CA")
+s2.chainA <- trim.pdb(s2, chain="A", elety="CA")
+s3.chainA <- trim.pdb(s1, chain="A", elety="CA")
+s1.b <- s1.chainA$atom$b
+s2.b <- s2.chainA$atom$b
+s3.b <- s3.chainA$atom$b
+plotb3(s1.b, sse=s1.chainA, typ="l", ylab="Bfactor")
+```
+
+![](lecture6hw_files/figure-commonmark/unnamed-chunk-1-1.png)
+
+``` r
+plotb3(s2.b, sse=s2.chainA, typ="l", ylab="Bfactor")
+```
+
+![](lecture6hw_files/figure-commonmark/unnamed-chunk-1-2.png)
+
+``` r
+plotb3(s3.b, sse=s3.chainA, typ="l", ylab="Bfactor")
+```
+
+![](lecture6hw_files/figure-commonmark/unnamed-chunk-1-3.png)
+
+> Q6. How would you generalize the original code above to work with any
+> set of input protein structures?
+
+## Code
+
+``` r
+library(bio3d)
+
+process_pdbs <- function(ids, protein_id) {
+
+pdbs <- lapply(ids, read.pdb)
+
+chain <- lapply(pdbs, function(p) trim.pdb(p, chain = "A", elety = "CA"))
+  
+bvals <- lapply(chain, function(p) p$atom$b)
+
+i <- match(protein_id, ids)
+
+if(is.na(i)) {
+  stop("protein_id not found in ids")
+}
+
+plotb3(bvals[[i]], sse = chain[[i]], typ = "l", ylab = "Bfactor")
+}
+```
+
+Example output
+
+``` r
+ids <- c("4AKE", "1AKE", "1E4Y")
+process_pdbs(ids, "1AKE")
+```
+
+      Note: Accessing on-line PDB file
+
+    Warning in get.pdb(file, path = tempdir(), verbose = FALSE):
+    /var/folders/cn/1kpm2vm94wsc2xd1ym159zch0000gn/T//RtmpKQs93N/4AKE.pdb exists.
+    Skipping download
+
+      Note: Accessing on-line PDB file
+
+    Warning in get.pdb(file, path = tempdir(), verbose = FALSE):
+    /var/folders/cn/1kpm2vm94wsc2xd1ym159zch0000gn/T//RtmpKQs93N/1AKE.pdb exists.
+    Skipping download
+
+       PDB has ALT records, taking A only, rm.alt=TRUE
+      Note: Accessing on-line PDB file
+
+    Warning in get.pdb(file, path = tempdir(), verbose = FALSE):
+    /var/folders/cn/1kpm2vm94wsc2xd1ym159zch0000gn/T//RtmpKQs93N/1E4Y.pdb exists.
+    Skipping download
+
+![](lecture6hw_files/figure-commonmark/unnamed-chunk-3-1.png)
+
+## Documentation
+
+The important inputs for my function are “ids” and “protein_id”. “ids”
+is a vector of IDs and “protein_id” is the specific ids to plot. This
+function reads files, trims the structure to a specific chain and atom,
+extracts B-factors, and generates a plot for the protein. To use the
+function, the following code chunk can be utilized:
+
+ids \<- c(“4AKE”, “1AKE”, “1E4Y”) process_pdbs(ids, “1AKE”)
+
+The output is a plot for the wanted protein.
+
+## Acknowledgement
+
+I used TritonGPT to figure out why my codes don’t work. An example is:
+
+code: library(bio3d) ids \<- c(“4AKE”, “1AKE”, “1E4Y”) s \<- lapply(ids,
+read.pdb) chain \<- lapply(s, function(p) trim.pdb(p, chain = “A”, elety
+= “CA”))
+
+bvals \<- lapply(chain, function(P) p$atom$b?)
+
+plotb3(bvals\[1\], sse = chain\[1\], typ = “l”, ylab = “Bfactor”) Error:
+unexpected ‘)’ in “bvals \<- lapply(chain, function(P) p$atom$b?)”
+
+An example response is:
+
+You’re very close. The error is coming from this line:
+
+r
+
+bvals \<- lapply(chain, function(P) p$atom$b?) What R is complaining
+about ? is not valid there, so R stops at the ) and says:
+
+unexpected ‘)’
+
+Two bugs to notice You wrote b? The ? should not be there. Your function
+argument is P, but inside you use p R is case-sensitive, so P and p are
+different.
