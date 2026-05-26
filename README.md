@@ -7,3 +7,7 @@ Introductory Material: Working with R
 [Class 5](class05/Untitled.html): Data exploration and visualization in R
 
 [Class 6](class06/class06.html): Why, when and how of writing your own R functions
+
+[Class 7](class07/lab07.html): Introduction to machine learning for Bioinformatics 1
+
+[Class 8](class08/lab08.html): Unsupervised learning mini-project
