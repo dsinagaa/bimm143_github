@@ -11,8 +11,12 @@ This is my repository for my Bioinformatics class from UC San Diego in S26.
 
 [Class 7](class07/lab07.md): Introduction to machine learning for Bioinformatics 1
 
+*Using R and Other Tools for Bioinformatics Analysis*
+
 [Class 8](class08/lab08.md): Unsupervised learning mini-project
 
 [Class 9](class09/lab09.md): Candy mini-project
 
 [Class 10](class10/class10.md): Structural Bioinformatics (pt1)
+
+[Class 11](class11/Untitled.html): Structural Bioinformatics (pt2 AlphaFold)
