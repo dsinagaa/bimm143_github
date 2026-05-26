@@ -119,8 +119,8 @@ A useful function here is the “base R” ‘sample()’ function.
 sample(1:5, size=60, replace="TRUE")
 ```
 
-     [1] 3 3 3 5 4 4 5 4 1 5 4 5 2 3 3 3 2 3 5 5 4 1 5 2 4 1 2 4 1 1 3 4 5 4 2 2 1 2
-    [39] 3 4 5 1 1 3 4 3 5 3 3 4 3 1 4 2 1 2 1 2 4 2
+     [1] 2 5 2 4 4 3 3 1 3 4 3 3 1 1 2 2 5 1 1 1 5 4 3 3 2 3 2 1 4 5 3 2 1 2 5 3 3 4
+    [39] 1 4 3 5 1 1 3 2 3 3 3 5 2 4 2 1 3 5 1 5 4 5
 
 We can use this to make a random nucleotide sequence if we draw from
 “A”, “C”, “G”, “T” …
@@ -129,7 +129,7 @@ We can use this to make a random nucleotide sequence if we draw from
 sample(x=c("A","C", "T", "G"), size=10, replace=TRUE)
 ```
 
-     [1] "C" "A" "T" "A" "G" "A" "C" "G" "C" "G"
+     [1] "T" "T" "A" "G" "A" "C" "T" "C" "T" "G"
 
 > **Q2a**. Write a function generate_dna() that returns a random DNA
 > sequence of a length specified by the user. Your first version should
@@ -146,13 +146,13 @@ generate_dna <- function(len=10) {
 generate_dna()
 ```
 
-     [1] "A" "G" "C" "A" "A" "G" "A" "A" "G" "C"
+     [1] "C" "T" "C" "A" "C" "A" "C" "G" "T" "T"
 
 ``` r
 generate_dna(len=10)
 ```
 
-     [1] "G" "T" "G" "T" "T" "C" "G" "C" "T" "A"
+     [1] "T" "G" "G" "T" "C" "G" "C" "G" "C" "A"
 
 > **Q2b**. Your second version should **optionally** be able to return
 > either a multi-element vector of single character nucleotides (as
@@ -185,7 +185,7 @@ generate_dna <- function(len=10, single.element=TRUE) {
 generate_dna(single.element=TRUE)
 ```
 
-    [1] "TATTGCCCAA"
+    [1] "GCTTCAGTTA"
 
 > **Q2c**. Finally, create a final version of your function that prints
 > out a FASTA format sequence with an id line indicating the sequence
@@ -223,7 +223,7 @@ x <- generate_dna(20)
 ```
 
     >len20
-    AAACTAGGAGCACTAAGGGT
+    TCGGGACACTCTAACCTAAC
 
 ## Q3. Write a generate_protein() function
 
@@ -250,7 +250,7 @@ x <- generate_protein(6)
 ```
 
     >6
-    HQCGWL
+    YIMWCG
 
 ## Q4. Generate random protein sequences of length 6 to 13
 
@@ -267,21 +267,21 @@ for(l in 6:13) {
 ```
 
     >6
-    EWWVMC
+    EHVPKY
     >7
-    HAFQGMP
+    CHFDQWI
     >8
-    AYINNDIS
+    KTYRTYNP
     >9
-    KVRTTSAES
+    DHRNAKSLW
     >10
-    SFVHQVCVWV
+    QCIHMEEKVQ
     >11
-    AVDLYLWVHHC
+    YLDPKQQLKPY
     >12
-    FVRGQWESRACD
+    TSDFTKMTHRED
     >13
-    LISGHTYWENYNV
+    RPAHHNFHCEMEN
 
 ## Q5. BLASTp search against nr — are your peptides “unique in nature”?
 
