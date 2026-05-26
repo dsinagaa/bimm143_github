@@ -15,4 +15,4 @@ This is my repository for my Bioinformatics class from UC San Diego in S26.
 
 [Class 9](class09/lab09.md): Candy mini-project
 
-[Class 10](
+[Class 10](class10/class10.md): Structural Bioinformatics (pt1)
