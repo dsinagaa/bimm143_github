@@ -22,7 +22,7 @@ This is my repository for my Bioinformatics class from UC San Diego in S26.
 
 [Class 12](class12/class12.Rmd): Genome informatics and high throughput sequencing
 
-[Class 13](class13/lab13.md): Transcriptomics, RNA-Seq analysis, and the interpretation of gene lists
+[Class 13](class13/lab13.md): Transcriptomics, RNA-Seq analysis, and interpretation of gene lists
 
 [Class 14](class14/lab14.md): RNA-Seq mini project
 
