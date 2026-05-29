@@ -18,11 +18,12 @@ This is my repository for my Bioinformatics class from UC San Diego in S26.
 
 [Class 10](class10/class10.md): Structural Bioinformatics (pt1)
 
-[Class 11](class11b/class11b.html): Structural Bioinformatics (pt2 AlphaFold)
+[Class 11](class11b/class11b.md): Structural Bioinformatics (pt2 AlphaFold)
 
-[Class 12](class12/class12.Rmd): Genome informatics and high throughput sequencing
+[Class 12](class12/class12.pdf): Genome informatics and high throughput sequencing
 
 [Class 13](class13/lab13.md): Transcriptomics, RNA-Seq analysis, and interpretation of gene lists
 
 [Class 14](class14/lab14.md): RNA-Seq mini project
 
+[Class 18](class18/class18.md): Investigating pertussis resurgence mini-project
