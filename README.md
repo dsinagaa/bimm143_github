@@ -20,7 +20,7 @@ This is my repository for my Bioinformatics class from UC San Diego in S26.
 
 [Class 11](class11b/class11b.md): Structural Bioinformatics (pt2 AlphaFold)
 
-[Class 12](class12/class12.pdf): Genome informatics and high throughput sequencing
+[Class 12](class12/class12.md): Genome informatics and high throughput sequencing
 
 [Class 13](class13/lab13.md): Transcriptomics, RNA-Seq analysis, and interpretation of gene lists
 
