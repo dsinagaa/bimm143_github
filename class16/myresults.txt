@@ -1,0 +1,123 @@
+BLASTP 2.12.0+
+
+
+Reference: Stephen F. Altschul, Thomas L. Madden, Alejandro A.
+Schaffer, Jinghui Zhang, Zheng Zhang, Webb Miller, and David J.
+Lipman (1997), "Gapped BLAST and PSI-BLAST: a new generation of
+protein database search programs", Nucleic Acids Res. 25:3389-3402.
+
+
+Reference for composition-based statistics: Alejandro A. Schaffer,
+L. Aravind, Thomas L. Madden, Sergei Shavirin, John L. Spouge, Yuri
+I. Wolf, Eugene V. Koonin, and Stephen F. Altschul (2001),
+"Improving the accuracy of PSI-BLAST protein database searches with
+composition-based statistics and other refinements", Nucleic Acids
+Res. 29:2994-3005.
+
+
+
+Database: zebrafish.1.protein.faa
+           55,301 sequences; 46,324,922 total letters
+
+
+
+Query= NP_001230020.1 uncharacterized protein LOC381272 isoform 2 [Mus
+musculus]
+
+Length=78
+
+
+***** No hits found *****
+
+
+
+Lambda      K        H        a         alpha
+   0.315    0.132    0.395    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 1174623417
+
+
+Query= NP_001177947.1 keratin associated protein 22-2 [Mus musculus]
+
+Length=67
+
+
+***** No hits found *****
+
+
+
+Lambda      K        H        a         alpha
+   0.324    0.161    0.583    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 1145497106
+
+
+Query= NP_034603.2 sarcoplasmic reticulum histidine-rich calcium-binding
+protein precursor [Mus musculus]
+
+Length=560
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+XP_073791197.1 voltage-dependent N-type calcium channel subunit a...  32.0    4.6  
+XP_073772162.1 calcium channel, voltage-dependent, P/Q type, alph...  31.2    8.6  
+
+
+>XP_073791197.1 voltage-dependent N-type calcium channel subunit 
+alpha-1B isoform X2 [Danio rerio]
+Length=1770
+
+ Score = 32.0 bits (71),  Expect = 4.6, Method: Composition-based stats.
+ Identities = 18/55 (33%), Positives = 29/55 (53%), Gaps = 5/55 (9%)
+
+Query  244  EDDGDSDEDSHTHRVQGREDENDDEDGDSGE---YRHHTQ--DHQGHNEEQDDDD  293
+            + DGD+ E       Q +  +   E+GD+GE   +RHH+Q  ++QG  E  +  D
+Sbjct  910  DKDGDTSEGQPASNHQRKYHKCRGENGDTGEGRLHRHHSQNRENQGGLERSNSQD  964
+
+
+>XP_073772162.1 calcium channel, voltage-dependent, P/Q type, 
+alpha 1A subunit, b isoform X3 [Danio rerio]
+Length=2094
+
+ Score = 31.2 bits (69),  Expect = 8.6, Method: Composition-based stats.
+ Identities = 19/72 (26%), Positives = 27/72 (38%), Gaps = 12/72 (17%)
+
+Query  243  EEDDGDSDEDSHTHRVQGREDENDDEDGDSGEYRHHTQDHQGHNEEQDDDDDDDDDDEDK  302
+            +ED G+       H  +G     D EDG     R H   + G            D D  +
+Sbjct  888  DEDGGERGRKHRDHHSRGETAGGDAEDGQEKRQRRHRHANHG------------DGDGRR  935
+
+Query  303  EDSTEHRHQTQG  314
+            E S  HR++ +G
+Sbjct  936  ERSRLHRNKKEG  947
+
+
+
+Lambda      K        H        a         alpha
+   0.306    0.129    0.385    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 17784561615
+
+
+  Database: zebrafish.1.protein.faa
+    Posted date:  May 21, 2026  7:49 PM
+  Number of letters in database: 46,324,922
+  Number of sequences in database:  55,301
+
+
+
+Matrix: BLOSUM62
+Gap Penalties: Existence: 11, Extension: 1
+Neighboring words threshold: 11
+Window for multiple hits: 40

@@ -1,7 +1,7 @@
 ---
 title: "Class 18: Pertussis and the CMI-PB project"
 author: "Dea Sinaga (PID: A17725676)"
-format: pdf
+format: html
 toc: true
 ---
 
@@ -319,7 +319,7 @@ rna <- read_json(url, simplifyVector = TRUE)
 ```
 
 ```{r}
-#meta <- inner_join(specimen, subject)
+meta <- inner_join(specimen, subject)
 ssrna <- inner_join(rna, meta)
 ```
 

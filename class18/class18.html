@@ -88,6 +88,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#a-tale-of-two-vaccines-wp-ap" id="toc-a-tale-of-two-vaccines-wp-ap" class="nav-link" data-scroll-target="#a-tale-of-two-vaccines-wp-ap">2. A tale of two vaccines (wP &amp; aP)</a></li>
   <li><a href="#exploring-cmi-pb-data" id="toc-exploring-cmi-pb-data" class="nav-link" data-scroll-target="#exploring-cmi-pb-data">3. Exploring CMI-PB data</a></li>
   <li><a href="#examine-igg-ab-titer-levels" id="toc-examine-igg-ab-titer-levels" class="nav-link" data-scroll-target="#examine-igg-ab-titer-levels">4. Examine IgG Ab titer levels</a></li>
+  <li><a href="#obtaining-cmi-pb-rnaseq-data" id="toc-obtaining-cmi-pb-rnaseq-data" class="nav-link" data-scroll-target="#obtaining-cmi-pb-rnaseq-data">5. Obtaining CMI-PB RNASeq data</a></li>
   </ul>
 </nav>
 </div>
@@ -378,7 +379,7 @@ alternative hypothesis: true difference in means is not equal to 0
 sample estimates:
 Time differences in days
 mean of x mean of y 
- 13532.47  10336.28 </code></pre>
+ 13537.47  10341.28 </code></pre>
 </div>
 </div>
 <p>They are significantly different.</p>
@@ -457,12 +458,12 @@ mean of x mean of y
 5 Not Hispanic or Latino White    1986-01-01    2016-09-12 2020_dataset
 6 Not Hispanic or Latino White    1986-01-01    2016-09-12 2020_dataset
          age
-1 14757 days
-2 14757 days
-3 14757 days
-4 14757 days
-5 14757 days
-6 14757 days</code></pre>
+1 14762 days
+2 14762 days
+3 14762 days
+4 14762 days
+5 14762 days
+6 14762 days</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -508,12 +509,12 @@ mean of x mean of y
 5 Not Hispanic or Latino White    1986-01-01    2016-09-12 2020_dataset
 6 Not Hispanic or Latino White    1986-01-01    2016-09-12 2020_dataset
          age
-1 14757 days
-2 14757 days
-3 14757 days
-4 14757 days
-5 14757 days
-6 14757 days</code></pre>
+1 14762 days
+2 14762 days
+3 14762 days
+4 14762 days
+5 14762 days
+6 14762 days</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -576,12 +577,12 @@ mean of x mean of y
 5                Unknown White    1983-01-01    2016-10-10 2020_dataset
 6                Unknown White    1983-01-01    2016-10-10 2020_dataset
          age
-1 14757 days
-2 14757 days
-3 14757 days
-4 15853 days
-5 15853 days
-6 15853 days</code></pre>
+1 14762 days
+2 14762 days
+3 14762 days
+4 15858 days
+5 15858 days
+6 15858 days</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -608,6 +609,146 @@ mean of x mean of y
 <blockquote class="blockquote">
 <p><strong>Q14.</strong> What antigens show differences in the level of IgG antibody titers recognizing them over time? Why these and not others?</p>
 </blockquote>
+<p>Based on the box plot above, PT, PRN, FIM2/3, and FHA show clear differences in the level of IgG antibody titers. The booster contains pertussis-related antigens, so the antigen levels targeted by the vaccines would increase over time.</p>
+<blockquote class="blockquote">
+<p><strong>Q15.</strong> Filter to pull out only two specific antigens for analysis and create a boxplot for each. You can chose any you like. Below I picked a “control” antigen (“OVA”, that is not in our vaccines) and a clear antigen of interest (“PT”, Pertussis Toxin, one of the key virulence factors produced by the bacterium B. pertussis).</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(igg, antigen<span class="sc">==</span><span class="st">"OVA"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(MFI_normalised, <span class="at">col=</span>infancy_vac) <span class="sc">+</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(visit)) <span class="sc">+</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"OVA antigen levels per visit (ap red, wP teal)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="class18_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(igg, antigen<span class="sc">==</span><span class="st">"PT"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(MFI_normalised, <span class="at">col=</span>infancy_vac) <span class="sc">+</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(visit)) <span class="sc">+</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"PT antigen levels per visit (ap red, wP teal)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="class18_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Q16.</strong> What do you notice about these two antigens time courses and the PT data in particular?</p>
+</blockquote>
+<p>PT levels increase over time and exceeds OVA. It looks like PT levels (both for aP and wP) peaked at visit 5 and slightly decreased after.</p>
+<blockquote class="blockquote">
+<p><strong>Q17.</strong> Do you see any clear difference in aP vs.&nbsp;wP responses?</p>
+</blockquote>
+<p>No, the responses for aP and wP seem to have a similar trend.</p>
+<p>Lets finish this section by looking at the 2021 dataset IgG PT antigen levels time-course:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>abdata<span class="fl">.21</span> <span class="ot">&lt;-</span> abdata <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset <span class="sc">==</span> <span class="st">"2021_dataset"</span>)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>abdata<span class="fl">.21</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(isotype <span class="sc">==</span> <span class="st">"IgG"</span>,  antigen <span class="sc">==</span> <span class="st">"PT"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>planned_day_relative_to_boost,</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">y=</span>MFI_normalised,</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span>infancy_vac,</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">group=</span>subject_id) <span class="sc">+</span></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="dv">0</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="dv">14</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"2021 dataset IgG PT"</span>,</span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Dashed lines indicate day 0 (pre-boost) and 14 (apparent peak levels)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="class18_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Q18.</strong> Does this trend look similar for the 2020 dataset?</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>abdata<span class="fl">.20</span> <span class="ot">&lt;-</span> abdata <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset <span class="sc">==</span> <span class="st">"2020_dataset"</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>abdata<span class="fl">.20</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(isotype <span class="sc">==</span> <span class="st">"IgG"</span>,  antigen <span class="sc">==</span> <span class="st">"PT"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>planned_day_relative_to_boost,</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">y=</span>MFI_normalised,</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span>infancy_vac,</span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">group=</span>subject_id) <span class="sc">+</span></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="dv">0</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="dv">14</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"2020 dataset IgG PT"</span>,</span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Dashed lines indicate day 0 (pre-boost) and 14 (apparent peak levels)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="class18_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>No, it doesn’t look similar.</p>
+</section>
+<section id="obtaining-cmi-pb-rnaseq-data" class="level2">
+<h2 class="anchored" data-anchor-id="obtaining-cmi-pb-rnaseq-data">5. Obtaining CMI-PB RNASeq data</h2>
+<p>For RNA-Seq data the API query mechanism quickly hits the web browser interface limit for file size. However, we can still do “targeted” RNA-Seq querys via the web accessible API.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://www.cmi-pb.org/api/v2/rnaseq?versioned_ensembl_gene_id=eq.ENSG00000211896.7"</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>rna <span class="ot">&lt;-</span> <span class="fu">read_json</span>(url, <span class="at">simplifyVector =</span> <span class="cn">TRUE</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(specimen, subject)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(subject_id)`</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>ssrna <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(rna, meta)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(specimen_id)`</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Q19.</strong> Make a plot of the time course of gene expression for IGHG1 gene (i.e.&nbsp;a plot of visit vs.&nbsp;tpm).</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ssrna) <span class="sc">+</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(visit, tpm, <span class="at">group=</span>subject_id) <span class="sc">+</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha=</span><span class="fl">0.2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="class18_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Q20.</strong> What do you notice about the expression of this gene (i.e.&nbsp;when is it at it’s maximum level)?</p>
+</blockquote>
+<p>It’s at its maximum level around the 4th and 8th visits.</p>
+<blockquote class="blockquote">
+<p><strong>Q21.</strong> Does this pattern in time match the trend of antibody titer data? If not, why not?</p>
+</blockquote>
+<p>Not exactly because antibodies are generated later than the ssRNA response.</p>
 </section>
 
 </main>

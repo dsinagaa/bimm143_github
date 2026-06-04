@@ -247,7 +247,7 @@ t.test(wP$age, aP$age)
     sample estimates:
     Time differences in days
     mean of x mean of y 
-     13532.47  10336.28 
+     13537.47  10341.28 
 
 They are significantly different.
 
@@ -329,12 +329,12 @@ head(meta)
     5 Not Hispanic or Latino White    1986-01-01    2016-09-12 2020_dataset
     6 Not Hispanic or Latino White    1986-01-01    2016-09-12 2020_dataset
              age
-    1 14757 days
-    2 14757 days
-    3 14757 days
-    4 14757 days
-    5 14757 days
-    6 14757 days
+    1 14762 days
+    2 14762 days
+    3 14762 days
+    4 14762 days
+    5 14762 days
+    6 14762 days
 
 > **Q10.** Now using the same procedure join meta with titer data so we
 > can further analyze this data in terms of time of visit aP/wP,
@@ -385,12 +385,12 @@ head(abdata)
     5 Not Hispanic or Latino White    1986-01-01    2016-09-12 2020_dataset
     6 Not Hispanic or Latino White    1986-01-01    2016-09-12 2020_dataset
              age
-    1 14757 days
-    2 14757 days
-    3 14757 days
-    4 14757 days
-    5 14757 days
-    6 14757 days
+    1 14762 days
+    2 14762 days
+    3 14762 days
+    4 14762 days
+    5 14762 days
+    6 14762 days
 
 > **Q11.** How many specimens (i.e. entries in abdata) do we have for
 > each isotype?
@@ -455,12 +455,12 @@ head(igg)
     5                Unknown White    1983-01-01    2016-10-10 2020_dataset
     6                Unknown White    1983-01-01    2016-10-10 2020_dataset
              age
-    1 14757 days
-    2 14757 days
-    3 14757 days
-    4 15853 days
-    5 15853 days
-    6 15853 days
+    1 14762 days
+    2 14762 days
+    3 14762 days
+    4 15858 days
+    5 15858 days
+    6 15858 days
 
 > **Q13.** Complete the following code to make a summary boxplot of Ab
 > titer levels (MFI) for all antigens:
@@ -586,7 +586,12 @@ rna <- read_json(url, simplifyVector = TRUE)
 ```
 
 ``` r
-#meta <- inner_join(specimen, subject)
+meta <- inner_join(specimen, subject)
+```
+
+    Joining with `by = join_by(subject_id)`
+
+``` r
 ssrna <- inner_join(rna, meta)
 ```
 
