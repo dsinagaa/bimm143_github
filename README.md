@@ -26,4 +26,4 @@ This is my repository for my Bioinformatics class from UC San Diego in S26.
 
 [Class 14](class14/lab14.md): Pathway Analysis from RNA-Seq Results
 
-[Class 18](class18/class18.md): Pertussis and the CMI-PB project
+[Class 18](class18/class18.md): Pertussis and the CMI-PB Project
