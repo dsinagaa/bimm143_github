@@ -12,9 +12,9 @@ This is my repository for my Bioinformatics class from UC San Diego in S26.
 
 *Using R and Other Tools for Bioinformatics Analysis*
 
-[Class 8](class08/lab08.md): Unsupervised learning mini-project
+[Class 8](class08/lab08.md): Unsupervised Learning Mini-Project
 
-[Class 9](class09/lab09.md): Candy mini-project
+[Class 9](class09/lab09.md): Candy Mini-Project
 
 [Class 10](class10/class10.md): Structural Bioinformatics
 
@@ -22,7 +22,7 @@ This is my repository for my Bioinformatics class from UC San Diego in S26.
 
 [Class 12](class12/class12.md): Population Scale Analysis
 
-[Class 13](class13/lab13.md): Transcriptomics and the analysis of RNA-Seq data
+[Class 13](class13/lab13.md): Transcriptomics and the Analysis of RNA-Seq Data
 
 [Class 14](class14/lab14.md): Pathway Analysis from RNA-Seq Results
 
